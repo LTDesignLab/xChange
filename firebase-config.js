@@ -1,9 +1,9 @@
 export const firebaseConfig = {
-    apiKey: "AIzaSyCMCId3dyE2YbRqs_IzmZ1m6s1MHcM9D_I",
-    authDomain: "xchange-2f03f.firebaseapp.com",
-    projectId: "xchange-2f03f",
-    storageBucket: "xchange-2f03f.appspot.com",
-    messagingSenderId: "843927768676",
-    appId: "1:843927768676:web:d66671b814c803859d5971",
-    measurementId: "G-RHN65LS18B"
-  };
+  apiKey: "AIzaSyDy-BbKFGAPDxFtEopjcqLlBXGHGKEFwIs",
+  authDomain: "xchange-f173f.firebaseapp.com",
+  projectId: "xchange-f173f",
+  storageBucket: "xchange-f173f.appspot.com",
+  messagingSenderId: "502160441749",
+  appId: "1:502160441749:web:f0734b6a9f12337086769c",
+  measurementId: "G-99SLMW24LV"
+};

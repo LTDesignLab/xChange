@@ -60,12 +60,8 @@ export default {
     async handleClick(event) {
         console.log('handling click: ', event);
         const body = { line_items: [this.product] }
-        const { id: sessionId } = await fetchFromAPI('checkouts', {
-            body
-        });
-        const { error } = await stripe.redirectToCheckout({
-            sessionId
-        });
+        const { id: sessionId } = await fetchFromAPI('checkouts', { body }, true);
+        const { error } = await stripe.redirectToCheckout({ sessionId });
         if(error) {
             console.log(error);
         }

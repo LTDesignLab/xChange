@@ -69,7 +69,7 @@ export default {
     async createPaymentIntent() {
       const validAmount = Math.min(Math.max(this.amount, 50), 9999999);
       this.amount = validAmount;
-      await fetchFromAPI('payments', { body: { amount: validAmount } }).then((pi) => {
+      await fetchFromAPI('payments', { body: { amount: validAmount } }, true).then((pi) => {
         console.log(pi);
         this.paymentIntent = pi;
         this.createAndMountFormElements();
