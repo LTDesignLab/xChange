@@ -3,7 +3,7 @@
     <h1>Customers</h1>
     <button v-if="!user" @click="signIn">Sign in with Google</button>
     <div v-if="user" class="main">
-      <h4>{{ user }}</h4>
+      <h4>user: {{ user.email }}</h4>
       <div class="section attach-new-card-container">
         <h4>Create a stetup intent</h4>
         <button @click="createSetupIntent">Attach New Credit Card</button>
@@ -42,6 +42,7 @@ import router from '../router';
 import firebase from 'firebase';
 import { fetchFromAPI } from './helpers';
 import { stripe } from '../stripe-config';
+import store from '../store';
 
 var elements = stripe.elements();
 
@@ -49,7 +50,6 @@ export default {
   name: 'Customers',
   data() {
     return {
-      user: null,
       wallet: null,
       paymentSources: [],
       si: null,
@@ -61,7 +61,9 @@ export default {
     this.fetchTestData();
   },
   computed: {
-
+    user() {
+      return store.state.user;
+    }
   },
   methods: {
     createAndMountFormElements() {
@@ -145,18 +147,22 @@ export default {
       });
     },
     async signIn() {
-        await firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(async (result) => {
+      console.log('signing in...');
+        await firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
+        .then(async (result) => {
           console.log('RESULT: ', result);
           const { uid, email } = result.user;
           firebase.firestore().collection('users').doc(uid).set({ email }, { merge: true });
-          this.user = email;
+          store.commit('setUser', result.user);
           await this.getWallet();
         }).catch((err) => {
           console.error('oopsie woopsie ', err);
         });
     },
     signOut() {
+      console.log('signing out...');
       firebase.auth().signOut();
+      store.commit('setUser', null);
       router.push('/');
     }
   }

@@ -1,6 +1,8 @@
 <template>
   <div class="checkout page-container">
 
+    <h1>payment slider</h1>
+
     <div class="payment-intent-status">
       <h3>{{ ( !paymentIntent ? 'No Payment Intent Created Yet' : 'Payment Intent ' + paymentIntent.status ) }}</h3>
       <h4 v-if="paymentIntent">{{ 'id: ' + paymentIntent.id }}</h4>
@@ -9,7 +11,13 @@
     </div>
 
     <div class="inline-form">
-      <input type="number" v-model="amount" :disabled="paymentIntent" />
+      <div class="slider-container">
+        <input type="range" min="500" max="50000" step="500" class="slider" v-model="amount">
+      </div>
+      <div class="custom-container">
+        <p style="opacty: 0.5">Custom amount</p>
+        <input type="number" v-model="amount" :disabled="paymentIntent" />
+      </div>
       <button :disabled="amount <= 0" @click="createPaymentIntent" :hidden="paymentIntent">
         {{ 'Ready to pay $' + (amount / 100).toFixed(2) }}
       </button>
@@ -148,8 +156,17 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/styles/global';
 
+.custom-container {
+  display: flex;
+}
+
+.vue-slider {
+  width: 400px !important;
+}
+
 .inline-form {
   display: flex;
+  flex-direction: column;
 }
 
 .payment-intent-status {
@@ -196,10 +213,18 @@ export default {
     height: 30px;
 }
 
-
-
 .place-order-button-block {
     margin: 10px 0;
 }
-  
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
 </style>

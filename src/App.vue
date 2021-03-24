@@ -5,6 +5,7 @@
         <router-link to="/"><li>Home</li></router-link>
         <router-link to="/checkout"><li>Checkout</li></router-link>
         <router-link to="/payments"><li>Payments</li></router-link>
+        <router-link to="/payment-slider"><li>Payment Slider</li></router-link>
         <router-link to="/customers"><li>Customers</li></router-link>
         <router-link to="/subscriptions"><li>Subscriptions</li></router-link>
       </ul>

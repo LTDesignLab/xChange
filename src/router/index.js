@@ -6,6 +6,8 @@ import Customers from '../views/Customers.vue'
 import Subscriptions from '../views/Subscriptions.vue'
 import Cancel from '../views/Cancel.vue'
 import Success from '../views/Success.vue'
+import Test from '../views/Test.vue'
+import PaymentSlider from '../views/PaymentSlider.vue'
 
 const routes = [
   {
@@ -22,6 +24,11 @@ const routes = [
     path: '/payments',
     name: 'Payments',
     component: Payments
+  },
+  {
+    path: '/payment-slider',
+    name: 'PaymentSlider',
+    component: PaymentSlider
   },
   {
     path: '/customers',
@@ -43,6 +50,11 @@ const routes = [
     name: 'Success',
     component: Success
   },
+  {
+    path: '/test',
+    name: 'Test',
+    component: Test
+  }
 ]
 
 const router = createRouter({
